@@ -3,18 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anushka Anthony Panikulam | Data Analyst</title>
+    <title>Anushka Anthony Panikulam's Website</title>
+    <style>
+        body {
+            background-image: url('https://AnushkaAP.github.io/website Backgrounds.png');
+            background-size: cover;
+            background-position: center;
+            color: lightgray; /* Change to lightsilver if preferred */
+            font-family: Arial, sans-serif;
+        }
+        .content {
+            display: flex;
+            align-items: center;
+            margin: 50px;
+        }
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .introduction {
+            max-width: 600px;
+        }
+        .tableauPlaceholder {
+            margin-top: 50px;
+        }
+        .small-dashboard {
+            width: 120px;
+            height: 67.5px;
+            cursor: pointer;
+        }
+        .full-dashboard {
+            width: 1920px;
+            height: 1080px;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
     <!-- Header Section -->
     <header>
-        <h1>Hi! My name is Anushka, and I am deeply passionate about data and its transformative power to unveil hidden insights, drive informed decisions, and tell compelling stories through visualizations. With every dataset, I see a narrative waiting to be discovered and shared, and I thrive on turning complex numbers into clear, actionable insights that can make a real impact.</h1>
+        <h1>Welcome to My Website</h1>
     </header>
 
     <!-- Main Content Section -->
     <main>
+        <!-- Profile and Introduction Section -->
+        <div class="content">
+            <img src="https://AnushkaAP.github.io/Anu photo.jpg" alt="Anushka Anthony Panikulam" class="profile-image">
+            <div class="introduction">
+                <h2>Anushka Anthony Panikulam</h2>
+                <p>Hi! My name is Anushka, and I am deeply passionate about data and its transformative power to unveil hidden insights, drive informed decisions, and tell compelling stories through visualizations. With every dataset, I see a narrative waiting to be discovered and shared, and I thrive on turning complex numbers into clear, actionable insights that can make a real impact.</p>
+            </div>
+        </div>
+
+        <!-- Tableau Dashboard Section -->
         <h2>Netflix Dashboard</h2>
-        <div class='tableauPlaceholder' id='viz1721155801206' style='position: relative; width: 1920px; height: 1080px;'>
+        <div class="small-dashboard tableauPlaceholder" id="viz1721155801206">
             <noscript>
                 <a href='#'>
                     <img alt='Netflix Dashboard' src='https://public.tableau.com/static/images/Ne/NetflixAnalyticsDashboard_17206867615350/NetflixDashboard/1_rss.png' style='border: none' />
@@ -36,20 +92,69 @@
                 <param name='language' value='en-US' />
             </object>
         </div>
-        <script type='text/javascript'>
-            var divElement = document.getElementById('viz1721155801206');
-            var vizElement = divElement.getElementsByTagName('object')[0];
-            vizElement.style.width='1920px';
-            vizElement.style.height='1080px';
-            var scriptElement = document.createElement('script');
-            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-            vizElement.parentNode.insertBefore(scriptElement, vizElement);
-        </script>
+
+        <!-- Overlay for Full-Screen Dashboard -->
+        <div id="overlay" class="overlay">
+            <div class="full-dashboard tableauPlaceholder" id="fullViz">
+                <noscript>
+                    <a href='#'>
+                        <img alt='Netflix Dashboard' src='https://public.tableau.com/static/images/Ne/NetflixAnalyticsDashboard_17206867615350/NetflixDashboard/1_rss.png' style='border: none' />
+                    </a>
+                </noscript>
+                <object class='tableauViz' style='display:none;'>
+                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                    <param name='embed_code_version' value='3' /> 
+                    <param name='site_root' value='' />
+                    <param name='name' value='NetflixAnalyticsDashboard_17206867615350&#47;NetflixDashboard' />
+                    <param name='tabs' value='no' />
+                    <param name='toolbar' value='yes' />
+                    <param name='static_image' value='https://public.tableau.com/static/images/Ne/NetflixAnalyticsDashboard_17206867615350/NetflixDashboard/1.png' /> 
+                    <param name='animate_transition' value='yes' />
+                    <param name='display_static_image' value='yes' />
+                    <param name='display_spinner' value='yes' />
+                    <param name='display_overlay' value='yes' />
+                    <param name='display_count' value='yes' />
+                    <param name='language' value='en-US' />
+                </object>
+            </div>
+        </div>
     </main>
 
     <!-- Footer Section -->
     <footer>
-        <p>&copy; 2024 My Website</p>
+        <p>&copy; 2024 Anushka Anthony Panikulam</p>
     </footer>
+
+    <script type='text/javascript'>
+        document.addEventListener("DOMContentLoaded", function() {
+            var smallDivElement = document.getElementById('viz1721155801206');
+            var fullDivElement = document.getElementById('fullViz');
+            var smallVizElement = smallDivElement.getElementsByTagName('object')[0];
+            var fullVizElement = fullDivElement.getElementsByTagName('object')[0];
+
+            // Set initial sizes
+            smallVizElement.style.width = '120px';
+            smallVizElement.style.height = '67.5px';
+
+            // Append Tableau API script
+            var scriptElement = document.createElement('script');
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+            smallVizElement.parentNode.insertBefore(scriptElement, smallVizElement);
+            fullVizElement.parentNode.insertBefore(scriptElement, fullVizElement);
+
+            // Overlay element
+            var overlay = document.getElementById('overlay');
+
+            // Function to open full-screen dashboard
+            smallDivElement.onclick = function() {
+                overlay.style.display = 'flex';
+            }
+
+            // Function to close full-screen dashboard
+            overlay.onclick = function() {
+                overlay.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
